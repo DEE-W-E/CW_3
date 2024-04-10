@@ -24,7 +24,7 @@ def sort_operations(operations_data: list[dict]) -> list[dict]:
 
 
 def mask_operation_info(operation):
-    """"""
+    """Преобразует информацию к ввиду : отправитель -> получатель"""
     operation_from = operation.get('from')
     operation_to = operation.get('to')
 
@@ -53,6 +53,7 @@ def mask_operation_info(operation):
 
 
 def format_date(operation):
+    """Форматирует дату в необходимый формат"""
     date = operation['date']
     dt_time = dt.datetime.strptime(date, '%Y-%m-%dT%H:%M:%S.%f')
     return dt_time.strftime("%d.%m.%Y")
