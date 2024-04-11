@@ -1,13 +1,16 @@
-from src import utils
+import os.path
+
+from config import ROOT_DIR
 from src.utils import open_json_file, filter_operations, sort_operations, format_date, \
     mask_operation_info
 
-data = open_json_file('operations.json')
+PATH_OPERATIONS = os.path.join(ROOT_DIR, 'operations.json')
+
+data = open_json_file(PATH_OPERATIONS)
 operations = filter_operations(data)
 operations = sort_operations(operations)[:5]
 
-print(operations )
 for i in operations:
-    print(f'{format_date(i)}\n'
-          f'{mask_operation_info(i)}\n')
-
+    print(f'{format_date(i)} {i['description']}\n'
+          f'{mask_operation_info(i)}\n'
+          f'{i["operationAmount"]['amount']} {i["operationAmount"]["currency"]['name']}\n')

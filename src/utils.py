@@ -25,7 +25,7 @@ def sort_operations(operations_data: list[dict]) -> list[dict]:
 
 def mask_operation_info(operation):
     """Преобразует информацию к ввиду : отправитель -> получатель
-        Номер карты замаскирован и не отображается целиком в формате  XXXX XX** **** XXXX (видны первые 6 цифр и последние 4, разбито по блокам по 4 цифры, разделенных пробелом).
+        Номер карты замаскирован и не отображается целиком в формате  XXXX XX** **** XXXX.
         Номер счета замаскирован и не отображается целиком в формате  **XXXX
         (видны только последние 4 цифры номера счета).
     """
@@ -61,8 +61,3 @@ def format_date(operation):
     date = operation['date']
     dt_time = dt.datetime.strptime(date, '%Y-%m-%dT%H:%M:%S.%f')
     return dt_time.strftime("%d.%m.%Y")
-
-
-
-
-
