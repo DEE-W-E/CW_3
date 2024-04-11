@@ -9,7 +9,7 @@ def open_json_file(file_path):
 
 
 def filter_operations(operations_data):
-    """Фильтрация json файла"""
+    """Фильтрация json файла по статусу 'EXECUTED"""
     operations_list = []
     for operation in operations_data:
         if operation.get('state') == "EXECUTED":
@@ -24,7 +24,11 @@ def sort_operations(operations_data: list[dict]) -> list[dict]:
 
 
 def mask_operation_info(operation):
-    """Преобразует информацию к ввиду : отправитель -> получатель"""
+    """Преобразует информацию к ввиду : отправитель -> получатель
+        Номер карты замаскирован и не отображается целиком в формате  XXXX XX** **** XXXX (видны первые 6 цифр и последние 4, разбито по блокам по 4 цифры, разделенных пробелом).
+        Номер счета замаскирован и не отображается целиком в формате  **XXXX
+        (видны только последние 4 цифры номера счета).
+    """
     operation_from = operation.get('from')
     operation_to = operation.get('to')
 
@@ -58,10 +62,7 @@ def format_date(operation):
     dt_time = dt.datetime.strptime(date, '%Y-%m-%dT%H:%M:%S.%f')
     return dt_time.strftime("%d.%m.%Y")
 
-# data = open_json_file('operations.json')
-# operations = filter_operations(data)
-# operations = sort_operations(operations)[:5]
-# for i in operations:
-#     #print(i)
-#     #print(format_date(i))
-#     print(mask_operation_info(i))
+
+
+
+
